@@ -6,7 +6,7 @@ use warnings;
 use inc::Module::Install;
 
 # Definition.
-abstract 'Perl module for processing Skim\'s changelog.';
+abstract 'Perl class for processing Skim\'s changelog.';
 author 'Michal Špaček <skim@cpan.org>';
 license 'bsd';
 name 'Skim-Changelog';
