@@ -10,7 +10,7 @@ use Date::Calc qw(Decode_Month);
 use Readonly;
 
 # Constants.
-Readonly::Scalar our $SPACE => q{};
+Readonly::Scalar our $EMPTY_STR => q{};
 
 # Version.
 our $VERSION = 0.01;
