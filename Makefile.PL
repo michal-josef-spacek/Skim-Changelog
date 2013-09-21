@@ -12,6 +12,7 @@ license 'bsd';
 name 'Skim-Changelog';
 requires 'Class::Utils' => 0.03;
 requires 'Date::Calc' => 0;
+requires 'Indent::String' => 0.01;
 requires 'Readonly' => 0;
 resources 'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html'.
 	'?Name=Skim-Changelog';
