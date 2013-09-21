@@ -52,7 +52,7 @@ sub parse {
 			push @{$struct_hr->{$last_version}->{'items'}}, $1;
 
 		# Item continues.
-		} elsif ($line =~ m/^\s*$/ms && $line =~ m/^\s+(.*)$/ms) {
+		} elsif ($line !~ m/^\s*$/ms && $line =~ m/^\s+(.*)$/ms) {
 			$struct_hr->{$last_version}->{'items'}->[-1] .= $SPACE.$1;
 		}
 	}
