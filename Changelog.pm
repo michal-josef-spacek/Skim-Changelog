@@ -100,3 +100,124 @@ sub _serialize_date {
 }
 
 1;
+
+__END__
+
+=pod
+
+=encoding utf8
+
+=head1 NAME
+
+Skim::Changelog - Perl class for processing Skim's changelog.
+
+=head1 SYNOPSIS
+
+ use Skim::Changelog;
+ my $obj = Skim::Changelog->new(%params);
+ my $struct_hr = $obj->parse($skim_changelog);
+ my $skim_changelog = $obj->serialize($struct_hr);
+
+=head1 METHODS
+
+=over 8
+
+=item C<new(%params)>
+
+ Constructor.
+
+=item C<parse($skim_changelog)>
+
+ Parse $skim_changelog data.
+ Returns hash reference to structure with parsed data.
+
+=item C<serialize($struct_hr)>
+
+ Serialize hash reference with structure.
+ Returns array of lines in array context.
+ Returns Changes string in scalar context.
+
+=back
+
+=head1 ERRORS
+
+ new():
+         From Class::Utils::set_params():
+                 Unknown parameter '%s'.
+
+=head1 EXAMPLE
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use Skim::Changelog;
+
+ # Object.
+ my $obj = Skim::Changelog->new;
+
+ # Example structure.
+ my $struct_hr = {
+         '0.01' => {
+                 'date' => [1, 1, 2013],
+                 'items' => [
+                         'foo',
+                         join ' ', ('bar') x 50,
+                 ],
+         },
+         '0.02' => {
+                 'date' => [],
+                 'items' => [
+                         'unreleased',
+                 ],
+         },
+ };
+
+ # Serialize.
+ my $skim_changelog = $obj->serialize($struct_hr);
+
+ # Print out.
+ print $skim_changelog;
+
+ # Output:
+ # 0.02
+ # - unreleased
+ # 
+ # 0.01 (January 1, 2013)
+ # - foo
+ # - bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar
+ #   bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar
+ #   bar bar bar bar bar bar bar bar bar bar bar bar
+
+=head1 DEPENDENCIES
+
+L<Class::Utils>,
+L<Date::Calc>,
+L<Indent::String>,
+L<Readonly>.
+
+=head1 SEE ALSO
+
+L<CPAN::Changes>,
+L<CPAN::Changes::SPEC>.
+
+=head1 REPOSITORY
+
+L<https://github.com/tupinek/Skim-Changelog>
+
+=head1 AUTHOR
+
+Michal Špaček L<mailto:skim@cpan.org>
+
+L<http://skim.cz>
+
+=head1 LICENSE AND COPYRIGHT
+
+BSD license.
+
+=head1 VERSION
+
+0.01
+
+=cut
