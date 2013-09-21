@@ -13,6 +13,7 @@ LICENSE
 Makefile.PL
 MANIFEST			This list of files
 META.yml
+README
 t/Skim-Changelog/00-use.t
 t/Skim-Changelog/01-version.t
 t/Skim-Changelog/02-pod_coverage.t

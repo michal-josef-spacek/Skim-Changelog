@@ -1,0 +1,91 @@
+NAME
+    Skim::Changelog - Perl class for processing Skim's changelog.
+
+SYNOPSIS
+     use Skim::Changelog;
+     my $obj = Skim::Changelog->new(%params);
+     my $struct_hr = $obj->parse($skim_changelog);
+     my $skim_changelog = $obj->serialize($struct_hr);
+
+METHODS
+    "new(%params)"
+             Constructor.
+
+    "parse($skim_changelog)"
+             Parse $skim_changelog data.
+             Returns hash reference to structure with parsed data.
+
+    "serialize($struct_hr)"
+             Serialize hash reference with structure.
+             Returns array of lines in array context.
+             Returns Changes string in scalar context.
+
+ERRORS
+     new():
+             From Class::Utils::set_params():
+                     Unknown parameter '%s'.
+
+EXAMPLE
+     # Pragmas.
+     use strict;
+     use warnings;
+
+     # Modules.
+     use Skim::Changelog;
+
+     # Object.
+     my $obj = Skim::Changelog->new;
+
+     # Example structure.
+     my $struct_hr = {
+             '0.01' => {
+                     'date' => [1, 1, 2013],
+                     'items' => [
+                             'foo',
+                             join ' ', ('bar') x 50,
+                     ],
+             },
+             '0.02' => {
+                     'date' => [],
+                     'items' => [
+                             'unreleased',
+                     ],
+             },
+     };
+
+     # Serialize.
+     my $skim_changelog = $obj->serialize($struct_hr);
+
+     # Print out.
+     print $skim_changelog;
+
+     # Output:
+     # 0.02
+     # - unreleased
+     # 
+     # 0.01 (January 1, 2013)
+     # - foo
+     # - bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar
+     #   bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar bar
+     #   bar bar bar bar bar bar bar bar bar bar bar bar
+
+DEPENDENCIES
+    Class::Utils, Date::Calc, Indent::String, Readonly.
+
+SEE ALSO
+    CPAN::Changes, CPAN::Changes::SPEC.
+
+REPOSITORY
+    <https://github.com/tupinek/Skim-Changelog>
+
+AUTHOR
+    Michal Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    BSD license.
+
+VERSION
+    0.01
+
